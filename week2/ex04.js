@@ -11,3 +11,14 @@ const relationship1 = {
     }
 }
 relationship1.logFriends();
+
+console.log("---------");
+const relationship2 = {
+    name : "one",
+    friends:["hi","hello","bye"],
+    logFriends(){
+        this.friends.forEach((friend)=>{
+            console.log(this.name, friend);
+        });
+    }
+}
