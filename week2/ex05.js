@@ -22,3 +22,6 @@ const [x,,y,,z] = arr;
 
 console.log(a,d);
 console.log(x,y,z);
+
+// 주의할 점
+// 구조분해 할당시에도 this를 사용하고 있다면 문제가 생긴다.
