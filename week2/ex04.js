@@ -21,4 +21,4 @@ const relationship2 = {
             console.log(this.name, friend);
         });
     }
-}
+}             
