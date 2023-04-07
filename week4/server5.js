@@ -19,18 +19,33 @@ const server = http.createServer(async (req, res)=> {
         const fileList = fs.readdir(menuFolder);    // readdir을 활용해서 해당 폴더의 내용을 가져옴. 프로미스 형태 (프로미스가 아니라면 콜백함수 쓰면 됨)
         // 요소 만들기
         let fileListText = '<ul>'
-        fileList.then((file_list)=>{
+        await fileList.then((file_list)=>{
             let ii = 0;
             console.log("fileList", file_list)
             while (ii < file_list.length) {
                 let dataData = file_list[ii].replace("menu_","").replace(".txt","");
-                fileListText += `<li><a href="/?date=${dataData}>`
-
+                fileListText += `<li><a href="/?date=${dataData}>${dataData}</li>`
                 ii+=1;
             }
-        })
+        });
+        console.log("log",fileListText);
+        fileListText += '</ul>'
 
-        res.writeHead(200, {'Content-type':'text/plain; charset=utf-8'});
+        const template = `
+            <!DOCTYPE html>
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>급식 메뉴</title>
+                </head>
+                <body>
+                    <h1><a href="/">급식 메뉴</a></h1>
+                    ${fileListText}
+                </body>
+            </html>
+        `
+
+        res.writeHead(200, {'Content-type':'text/html; charset=utf-8'});
         res.end("성공");
 
         
