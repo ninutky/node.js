@@ -19,7 +19,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // body-parser를 이용해 application/json 파싱
 app.use(bodyParser.json())
 
-app.use(`/public`, static(path.join(__dirname, 'public')));
+// app.use(`/public`, static(path.join(__dirname, 'public')));
+app.use(`/`, static(path.join(__dirname, 'public')));
 
 // 미들웨어에서 파라미터 확인
 app.use(function(req, res, next) {
